@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sourcemap解析服务</title>
+</head>
+
+<body>
+
+    <div>
+        <div>
+            <span>报错信息：</span>
+            <input id="errorString" type="text">
+        </div>
+        <div>
+            <button id="submitBtn">提交</button>
+        </div>
+        <div>
+            <span>报错位置：</span>
+            <pre id="errorResult"></pre>
+        </div>
+    </div>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('submitBtn').addEventListener('click', () => {
+                const xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function (response) {
+                    if (xhr.readyState == 4 && xhr.status === 200) {
+                        if (response.currentTarget && response.currentTarget.responseText) {
+                            document.getElementById('errorResult').innerText = response.currentTarget.responseText
+                        }
+                    }
+                }
+                xhr.open('POST', '/getOriginPosition', true);
+                xhr.setRequestHeader('Content-Type', 'application/JSON')
+                xhr.send(JSON.stringify({errorString: document.getElementById('errorString').value}));
+
+            })
+        })
+    </script>
+</body>
+
+</html>

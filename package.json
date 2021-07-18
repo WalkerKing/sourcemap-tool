@@ -1,0 +1,21 @@
+{
+  "name": "sourcemap-tool",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "serve": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^2.13.1",
+    "koa-bodyparser": "^4.3.0",
+    "koa-router": "^10.0.0",
+    "source-map": "^0.7.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
